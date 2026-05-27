@@ -85,7 +85,7 @@ const UPGRADES = [
     { id: 'gm6',  name: 'Onisciência',               icon: '🌐', desc: 'Toda a produção aumenta 5×.',  cost: 5e12,     type: 'global', mult: 5,    requires: null },
     { id: 'gm7',  name: 'A Mente de Deus',           icon: '🌐', desc: 'Toda a produção aumenta 10×.', cost: 500e12,   type: 'global', mult: 10,   requires: null },
 
-    // ── Prestígio (compradas com Tokens Neurais 💎) ──────────────────────────
+    // ── Prestígio (compradas com Diamantes 💎) ────────────────────────────────
     { id: 'pt1',  name: 'Amplificador de Token',  icon: '💎', desc: 'Bônus de prestígio ×1,5.',                    cost: 1,   type: 'prestige',       mult: 1.5, requires: null, currency: 'tokens' },
     { id: 'pt2',  name: 'Memória Profunda',       icon: '💎', desc: 'Começa com 10 Nano Robôs após o prestígio.',  cost: 3,   type: 'prestige_start', value: { gen: 'nano_bot', count: 10 }, requires: null, currency: 'tokens' },
     { id: 'pt3',  name: 'Legado Neural',          icon: '💎', desc: 'Bônus de prestígio ×2.',                      cost: 12,  type: 'prestige',       mult: 2,   requires: null, currency: 'tokens' },

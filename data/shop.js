@@ -36,7 +36,7 @@ const SHOP_ITEMS = [
         category: 'boost', rarity: 'legendary'
     },
 
-    // ── Melhorias permanentes (compra com tokens) ──────────────────────────────
+    // ── Melhorias permanentes (compra com diamantes) ──────────────────────────
     {
         id: 'perm_offline', name: 'Módulo Offline', icon: '💤',
         desc: '+50% ganhos offline permanentemente.',
@@ -66,8 +66,8 @@ const SHOP_ITEMS = [
         category: 'permanent', rarity: 'epic'
     },
     {
-        id: 'perm_token', name: 'Gerador de Tokens', icon: '💎',
-        desc: '+20% tokens ganhos no prestígio.',
+        id: 'perm_token', name: 'Gerador de Diamantes', icon: '💎',
+        desc: '+20% diamantes ganhos no prestígio.',
         type: 'permanent', cost: 50, currency: 'tokens',
         effect: 'token_bonus', effectValue: 0.2,
         category: 'permanent', rarity: 'legendary'
@@ -77,44 +77,55 @@ const SHOP_ITEMS = [
 // ── Pacotes de Diamantes (moeda premium) ──────────────────────────────────────
 const DIAMOND_PACKS = [
     {
+        id:       'diamonds_starter',
+        name:     'Pacote Iniciante',
+        icon:     '💎',
+        diamonds: 50,
+        price:    'R$ 1,90',
+        bonus:    null,
+        bestValue: false,
+        accent:   '#a0a0c0',
+        rarity:   'common',
+    },
+    {
         id:       'diamonds_small',
         name:     'Pacote Inicial',
         icon:     '💎',
-        diamonds: 100,
+        diamonds: 150,
         price:    'R$ 4,90',
         bonus:    null,
         bestValue: false,
         accent:   '#7b2fff',
-        rarity:   'common',
+        rarity:   'uncommon',
     },
     {
         id:       'diamonds_medium',
         name:     'Pacote Médio',
         icon:     '💎',
-        diamonds: 300,
+        diamonds: 400,
         price:    'R$ 9,90',
-        bonus:    '+20% Bônus',
+        bonus:    '+33% Bônus',
         bestValue: false,
         accent:   '#00f5ff',
-        rarity:   'uncommon',
+        rarity:   'rare',
     },
     {
         id:       'diamonds_large',
         name:     'Pacote Grande',
         icon:     '💎',
-        diamonds: 700,
+        diamonds: 1000,
         price:    'R$ 19,90',
-        bonus:    '+75% Bônus',
+        bonus:    '+43% Bônus',
         bestValue: false,
         accent:   '#7b2fff',
         popular:  true,
-        rarity:   'rare',
+        rarity:   'epic',
     },
     {
         id:       'diamonds_mega',
         name:     'Pacote MEGA',
         icon:     '💎',
-        diamonds: 2000,
+        diamonds: 3000,
         price:    'R$ 49,90',
         bonus:    '🔥 MELHOR VALOR',
         bestValue: true,

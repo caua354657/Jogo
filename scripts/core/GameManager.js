@@ -253,32 +253,20 @@ class GameManager {
     }
 
     _applyActiveSkin(skinId) {
-        const npc = document.getElementById('skin-npc');
         const skin = (typeof PREMIUM_SKINS !== 'undefined') ? PREMIUM_SKINS.find(s => s.id === skinId) : null;
 
         if (!skin) {
-            // No active skin — clear attributes & hide NPC
             document.body.removeAttribute('data-skin');
             const orb = document.querySelector('.orb-core');
             if (orb) orb.textContent = '🧠';
-            if (npc) npc.style.display = 'none';
             return;
         }
 
-        // Apply orb icon & skin theme
         const orb = document.querySelector('.orb-core');
         if (orb) orb.textContent = skin.orbIcon;
         document.body.setAttribute('data-skin', skin.theme);
 
-        // Show NPC character with skin accent color
-        if (npc) {
-            npc.textContent = skin.character || skin.icon;
-            npc.style.setProperty('--npc-color', skin.accent);
-            npc.style.setProperty('--npc-color2', skin.accent2);
-            npc.style.display = '';
-        }
-
-        // Reinitialise background nodes + effects with new skin palette
+        // Reinitialise background neural network with new skin palette
         if (this._bg) this._bg.reinit();
     }
 

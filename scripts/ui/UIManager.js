@@ -1155,7 +1155,7 @@ class UIManager {
             ['Conquistas', g.achievements.unlocked.size + ' / ' + ACHIEVEMENTS.length],
             ['Missões Resgatadas', g.missions.claims.size],
             ['Prestígios', g.economy.totalPrestiges],
-            ['Tokens Neurais', g.economy.prestigeTokens],
+            ['Diamantes', g.economy.prestigeTokens],
             ['Multiplicador de Prestígio', g.economy._prestigeMult.toFixed(2) + '×'],
             ['Tempo de Jogo', formatTime(g.stats.playTime)]
         ];
@@ -1628,7 +1628,7 @@ class UIManager {
                     <div class="pshop-section-header">
                         <span>✨</span>
                         <span class="pshop-section-title">PREMIUM</span>
-                        <span class="pshop-section-sub">Benefícios exclusivos</span>
+                        <span class="pshop-section-sub">Benefícios vitalícios exclusivos</span>
                     </div>
                     ${vipCard}${doubleCard}
                 </div>
@@ -1637,7 +1637,7 @@ class UIManager {
                     <div class="pshop-section-header">
                         <span>💎</span>
                         <span class="pshop-section-title">PACOTES DE DIAMANTES</span>
-                        <span class="pshop-section-sub">Adicione tokens neurais à sua conta · Saldo: 💎 ${g.economy.prestigeTokens.toLocaleString('pt-BR')}</span>
+                        <span class="pshop-section-sub">Saldo atual: 💎 ${g.economy.prestigeTokens.toLocaleString('pt-BR')} Diamantes</span>
                     </div>
                     <div class="dpack-grid">${packHTML}</div>
                 </div>
@@ -1645,8 +1645,8 @@ class UIManager {
                 <div class="pshop-section">
                     <div class="pshop-section-header">
                         <span>🎨</span>
-                        <span class="pshop-section-title">SKINS & EVENTOS</span>
-                        <span class="pshop-section-sub">Personalize seu núcleo</span>
+                        <span class="pshop-section-title">SKINS & TEMAS</span>
+                        <span class="pshop-section-sub">Transforme completamente a atmosfera do núcleo</span>
                     </div>
                     ${skinCards}
                 </div>
@@ -1655,18 +1655,9 @@ class UIManager {
                     <div class="pshop-section-header">
                         <span>⚡</span>
                         <span class="pshop-section-title">BOOSTS</span>
-                        <span class="pshop-section-sub">Temporários · Clique para selecionar quantidade</span>
+                        <span class="pshop-section-sub">Potenciadores temporários · Clique para selecionar quantidade</span>
                     </div>
                     ${boostCards}
-                </div>
-
-                <div class="pshop-section">
-                    <div class="pshop-section-header">
-                        <span>🔮</span>
-                        <span class="pshop-section-title">MELHORIAS PERMANENTES</span>
-                        <span class="pshop-section-sub">Compra com Tokens Neurais 💎</span>
-                    </div>
-                    ${permCards}
                 </div>
 
             </div>`;
@@ -1958,7 +1949,7 @@ class UIManager {
                     <div class="rb-reward-row">
                         <div class="rb-reward-box" style="--tc:${theme.c1}">
                             <div class="rb-reward-val">${tokens > 0 ? '+' + tokens : '—'} 💎</div>
-                            <div class="rb-reward-sub">Tokens Neurais</div>
+                            <div class="rb-reward-sub">Diamantes</div>
                         </div>
                         <div class="rb-reward-box" style="--tc:#7b2fff">
                             <div class="rb-reward-val">${afterMult}×</div>
@@ -1976,7 +1967,7 @@ class UIManager {
                     </div>
                     <div class="rb-info-col rb-keeps">
                         <div class="rb-info-head">✅ Mantido</div>
-                        <div class="rb-info-item">Tokens Neurais</div>
+                        <div class="rb-info-item">Diamantes</div>
                         <div class="rb-info-item">Nível e XP</div>
                         <div class="rb-info-item">Conquistas</div>
                     </div>

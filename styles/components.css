@@ -2522,39 +2522,4 @@ input[type=range]::-webkit-slider-thumb {
     50%      { transform: translateX(-50%) scale(1.12); }
 }
 
-/* ── Skin NPC — themed character that floats beside the game ─────────────── */
-#skin-npc {
-    position: fixed;
-    left: 7%;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 64px;
-    line-height: 1;
-    z-index: 6;
-    pointer-events: none;
-    user-select: none;
-    filter: drop-shadow(0 0 16px var(--npc-color, #7b2fff))
-            drop-shadow(0 0 6px var(--npc-color2, #00f5ff));
-    animation: skin-npc-float 3.2s ease-in-out infinite;
-}
-@keyframes skin-npc-float {
-    0%,100% { transform: translateY(-50%); }
-    50%      { transform: translateY(calc(-50% - 14px)); }
-}
-
-/* Mobile: NPC sits at bottom-right corner, smaller */
-@media (max-width: 768px) {
-    #skin-npc {
-        left: auto;
-        right: 6%;
-        top: auto;
-        bottom: 18%;
-        transform: none;
-        font-size: 40px;
-        animation: skin-npc-float-mobile 3.2s ease-in-out infinite;
-    }
-}
-@keyframes skin-npc-float-mobile {
-    0%,100% { transform: translateY(0); }
-    50%      { transform: translateY(-10px); }
-}
+/* skin-npc removed — atmosphere handled by CSS ::before/::after on body[data-skin] */
