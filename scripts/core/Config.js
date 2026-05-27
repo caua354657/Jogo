@@ -6,17 +6,17 @@ const Config = {
     TICK_RATE: 20,
 
     CLICK_COOLDOWN_MIN: 1000 / 30,
-    CRITICAL_CHANCE: 0.05,
+    CRITICAL_CHANCE: 0.04,
     CRITICAL_MULT: 5,
     COMBO_TIMEOUT: 2000,
     COMBO_LEVELS: [1, 2, 3, 5, 10],
-    COMBO_THRESHOLDS: [0, 10, 25, 50, 100],
+    COMBO_THRESHOLDS: [0, 15, 35, 70, 150],
 
     OFFLINE_MAX_HOURS: 4,
-    PRESTIGE_BASE: 1e6,
-    PRESTIGE_SCALE: 5,
+    PRESTIGE_BASE: 50e6,   // 50 million — first prestige requires real investment
+    PRESTIGE_SCALE: 10,    // each subsequent prestige costs 10× more
 
-    COST_SCALE: 1.15,
+    COST_SCALE: 1.22,      // steeper generator cost curve (was 1.15)
 
     PARTICLE_MAX: 150,
     NOTIFICATION_MAX: 5,

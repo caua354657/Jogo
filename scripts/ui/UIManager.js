@@ -623,6 +623,17 @@ class UIManager {
         this._setEl('click-value', '+' + formatNum(g.economy.getClickValue() * g.combo.getMult()));
         this._setEl('level-display', 'NVL ' + g.level.level);
         this._setEl('token-display', '💎 ' + g.economy.prestigeTokens);
+
+        // Diamond balance — only show when logged in and owns diamonds
+        const diamondEl = document.getElementById('diamond-display');
+        if (diamondEl && g.account.isLoggedIn()) {
+            const d = g.account.getDiamonds?.() || 0;
+            diamondEl.textContent = '🔷 ' + d.toLocaleString('pt-BR');
+            diamondEl.style.display = '';
+        } else if (diamondEl) {
+            diamondEl.style.display = 'none';
+        }
+
         const lp = g.level.getProgress();
         const xpBar = document.getElementById('xp-bar');
         if (xpBar) xpBar.style.width = (lp.pct * 100) + '%';
@@ -1589,17 +1600,6 @@ class UIManager {
         container.innerHTML = `
             <div class="pshop-container" id="pshop-container">
 
-                <div class="pshop-section pshop-section--diamonds">
-                    <div class="pshop-section-header">
-                        <span>🔷</span>
-                        <div style="flex:1">
-                            <span class="pshop-section-title">DIAMANTES</span>
-                            <span class="pshop-section-sub">Moeda premium · Saldo: <strong class="dpack-balance">${diamonds.toLocaleString('pt-BR')} 🔷</strong></span>
-                        </div>
-                    </div>
-                    <div class="dpack-grid">${packHTML}</div>
-                </div>
-
                 <div class="pshop-section">
                     <div class="pshop-section-header">
                         <span>✨</span>
@@ -1634,6 +1634,15 @@ class UIManager {
                         <span class="pshop-section-sub">Compra com Tokens Neurais</span>
                     </div>
                     ${permCards}
+                </div>
+
+                <div class="pshop-section pshop-section--diamonds">
+                    <div class="pshop-section-header">
+                        <span>🔷</span>
+                        <span class="pshop-section-title">DIAMANTES</span>
+                        <span class="pshop-section-sub">Recarga de moeda premium${diamonds > 0 ? ` · Saldo: <strong style="color:#9bb5ff">${diamonds.toLocaleString('pt-BR')}</strong>` : ''}</span>
+                    </div>
+                    <div class="dpack-grid">${packHTML}</div>
                 </div>
 
             </div>`;
