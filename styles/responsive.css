@@ -1,0 +1,359 @@
+/* ── NEXUS CORE Responsive Design ── */
+
+/* ── Desktop Enhancement (1025px+) — larger text and improved spacing ── */
+@media (min-width: 1025px) {
+    /* HUD */
+    #neuron-count  { font-size: 26px; }
+    #nps-display   { font-size: 13px; }
+    .hud-stat      { font-size: 14px; }
+    #level-display { font-size: 14px; }
+    #token-display { font-size: 14px; }
+
+    /* Click orb */
+    #click-btn   { width: 215px; height: 215px; }
+    .orb-core    { width: 130px; height: 130px; font-size: 42px; }
+    .ring-1      { width: 248px; height: 248px; }
+    .ring-2      { width: 280px; height: 280px; }
+    .ring-3      { width: 316px; height: 316px; }
+    #click-value { font-size: 17px; }
+
+    /* Modal */
+    #modal-panel  { width: 660px; max-width: 90vw; }
+    .modal-header { font-size: 17px; padding: 18px 24px; }
+    .modal-body   { padding: 18px 24px; }
+    .tab-btn      { font-size: 10px; padding: 8px 4px; }
+
+    /* Generators */
+    .gen-item    { padding: 10px 12px; }
+    .gen-icon    { font-size: 26px; }
+    .gen-name    { font-size: 14px; }
+    .gen-rate    { font-size: 12px; }
+    .gen-count   { font-size: 20px; }
+    .gen-buy-btn { font-size: 13px; padding: 6px 12px; }
+
+    /* Upgrades */
+    .upgrade-item { padding: 10px 12px; }
+    .upg-icon     { font-size: 23px; }
+    .upg-name     { font-size: 14px; }
+    .upg-cost     { font-size: 12px; }
+    .upg-desc     { font-size: 11px; }
+
+    /* Achievements */
+    .achievement-item { padding: 10px 12px; }
+    .ach-icon         { font-size: 26px; }
+    .ach-name         { font-size: 13px; }
+    .ach-desc         { font-size: 11px; }
+
+    /* Missions */
+    .mission-item     { padding: 16px 18px; }
+    .mission-icon     { font-size: 27px; }
+    .mission-name     { font-size: 16px; }
+    .mission-desc     { font-size: 13px; }
+    .mission-progress { font-size: 11px; }
+    .reward-chip      { font-size: 11px; padding: 3px 9px; }
+
+    /* Shop */
+    .shop-item      { padding: 14px 16px; gap: 12px; }
+    .shop-item-icon { font-size: 30px; }
+    .shop-item-name { font-size: 14px; }
+    .shop-item-desc { font-size: 12px; }
+    .shop-buy-btn   { font-size: 12px; padding: 7px 14px; }
+
+    /* Skills */
+    .skill-item        { padding: 14px 16px; gap: 12px; }
+    .skill-item-icon   { font-size: 30px; }
+    .skill-item-name   { font-size: 14px; }
+    .skill-item-desc   { font-size: 12px; }
+    .skill-upgrade-btn { font-size: 12px; padding: 7px 14px; }
+    .skill-sp-label    { font-size: 12px; }
+    .skill-sp-count    { font-size: 15px; }
+
+    /* Leaderboard */
+    .lb-row    { padding: 12px 14px; gap: 12px; }
+    .lb-rank   { font-size: 14px; }
+    .lb-avatar { font-size: 22px; }
+    .lb-name   { font-size: 14px; }
+    .lb-sub    { font-size: 11px; }
+    .lb-score  { font-size: 13px; }
+
+    /* Profile */
+    .profile-card     { padding: 18px 16px; gap: 16px; }
+    .profile-avatar   { width: 56px; height: 56px; font-size: 38px; }
+    .profile-username { font-size: 15px; }
+    .profile-email    { font-size: 12px; }
+
+    /* Stats */
+    .stat-row { font-size: 14px; padding: 8px 10px; }
+    .stat-val { font-size: 12px; }
+
+    /* Settings */
+    .settings-btn   { font-size: 15px; padding: 12px 14px; }
+    .settings-label { font-size: 12px; }
+
+    /* Notifications */
+    .notif-text { font-size: 13px; }
+    .notif-icon { font-size: 20px; }
+
+    /* Rebirth panel */
+    .rb-title          { font-size: 14px; }
+    .rb-subtitle       { font-size: 12px; }
+    .rb-icon           { font-size: 36px; }
+    .rb-reward-val     { font-size: 20px; }
+    .rb-reward-sub     { font-size: 10px; }
+    .rb-section-title  { font-size: 11px; }
+    .rb-info-head      { font-size: 11px; }
+    .rb-info-item      { font-size: 11px; }
+    .rb-prestige-btn   { font-size: 13px; }
+    .rb-bar-track      { height: 12px; border-radius: 7px; }
+    .rb-bar-labels     { font-size: 11px; }
+    .rb-theme-name     { font-size: 14px; }
+    .rb-prestige-badge { font-size: 24px; }
+
+    /* Category hub */
+    .cat-hub-btn   { min-height: 130px; padding: 24px 16px; gap: 12px; }
+    .cat-hub-icon  { font-size: 38px; }
+    .cat-hub-label { font-size: 11px; }
+    .cat-hub-sub   { font-size: 11px; }
+    .cat-hub-grid  { gap: 12px; }
+
+    /* Icon containers enlarged on desktop */
+    .gen-icon        { width: 48px; height: 48px; }
+    .upg-icon        { width: 44px; height: 44px; }
+    .shop-item-icon  { width: 52px; height: 52px; }
+    .skill-item-icon { width: 50px; height: 50px; }
+    .ach-icon        { width: 44px; height: 44px; }
+}
+
+@media (min-width: 1440px) {
+    #modal-panel  { width: 700px; }
+    #neuron-count { font-size: 28px; }
+    .mission-name { font-size: 17px; }
+    .gen-name     { font-size: 15px; }
+    .mission-item { padding: 18px 20px; }
+    #click-btn    { width: 230px; height: 230px; }
+    .orb-core     { width: 140px; height: 140px; font-size: 45px; }
+    .ring-1       { width: 265px; height: 265px; }
+    .ring-2       { width: 300px; height: 300px; }
+    .ring-3       { width: 338px; height: 338px; }
+}
+
+/* Default (Mobile First approach for some components, but mostly Desktop down) */
+@media (max-width: 1024px) {
+    /* Tablet & Laptop */
+    #sidebar { right: 10px; padding: 8px; gap: 8px; }
+    .sidebar-btn { width: 38px; height: 38px; font-size: 18px; }
+    
+    #modal-panel { width: 85vw; max-height: 90vh; }
+}
+
+@media (max-width: 768px) {
+    /* Mobile Landscape & Tablet */
+    #sidebar { display: none; }
+    #mobile-nav { display: flex; }
+    #game-screen { 
+        padding-bottom: 60px; 
+        height: 100dvh; 
+        height: 100svh; 
+    }
+    
+    #click-btn { width: 160px; height: 160px; }
+    .orb-core { width: 90px; height: 90px; font-size: 28px; }
+    .ring-1 { width: 190px; height: 190px; }
+    .ring-2 { width: 220px; height: 220px; }
+    .ring-3 { width: 250px; height: 250px; }
+
+    #modal-panel { width: 95vw; max-height: 85vh; border-radius: 16px; }
+    .modal-header { padding: 12px 16px; font-size: 14px; }
+    .modal-body { padding: 12px 16px; }
+
+    #hud { padding: 0 10px; gap: 10px; }
+    #neuron-count { font-size: 18px; }
+    .hud-stat { font-size: 11px; }
+
+    #notification-center { width: 100vw; right: -100vw; border-left: none; }
+
+    /* Generator qty row — tablet/mobile landscape */
+    .gen-item-footer    { gap: 6px; }
+    .gen-qty-btn        { height: 24px; min-width: 26px; padding: 0 5px; font-size: 8px; }
+    .gen-qty-max        { min-width: 30px; }
+    .gen-buy-btn        { min-width: 70px; font-size: 11px; padding: 4px 8px; }
+}
+
+@media (max-width: 480px) {
+    /* Mobile Portrait */
+    #click-btn { width: 140px; height: 140px; }
+    .orb-core { width: 75px; height: 75px; font-size: 24px; }
+    .ring-1 { width: 160px; height: 160px; }
+    .ring-2 { width: 185px; height: 185px; }
+    .ring-3 { width: 210px; height: 210px; }
+
+    #combo-display { font-size: 16px; }
+    #click-value { font-size: 14px; }
+
+    #modal-panel {
+        width: 95vw;
+        max-height: 85svh;
+        border-radius: 16px;
+    }
+
+    .gen-name, .upg-name { white-space: normal; overflow: visible; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+
+    .mission-item { padding: 10px; gap: 6px; }
+    .mission-icon { font-size: 20px; }
+    .mission-name { font-size: 13px; }
+    .mission-desc { font-size: 11px; }
+    .reward-chip { font-size: 9px; padding: 2px 6px; }
+
+    /* Leaderboard compact */
+    .lb-row { padding: 8px 10px; gap: 8px; }
+    .lb-rank { min-width: 26px; font-size: 11px; }
+    .lb-avatar { font-size: 17px; }
+    .lb-name { font-size: 12px; }
+    .lb-sub { font-size: 9px; }
+    .lb-score { font-size: 11px; }
+
+    /* Profile compact */
+    .profile-card { padding: 12px 10px; gap: 10px; }
+    .profile-avatar { width: 42px; height: 42px; font-size: 26px; }
+    .profile-username { font-size: 12px; }
+    .profile-auth-form { padding: 14px 12px; }
+
+    /* Shop compact */
+    .shop-item { padding: 10px 10px; gap: 8px; }
+    .shop-item-icon { font-size: 22px; }
+    .shop-item-name { font-size: 12px; }
+    .shop-item-desc { font-size: 10px; }
+    .shop-buy-btn { font-size: 10px; padding: 5px 10px; }
+
+    /* Skills compact */
+    .skill-item { padding: 10px 10px; gap: 8px; }
+    .skill-item-icon { font-size: 22px; }
+    .skill-item-name { font-size: 12px; }
+    .skill-item-desc { font-size: 10px; }
+    .skill-upgrade-btn { font-size: 10px; padding: 5px 10px; }
+    .skill-dot { width: 8px; height: 8px; }
+
+    /* Category hub compact */
+    .cat-hub-grid  { gap: 8px; }
+    .cat-hub-btn   { min-height: 100px; padding: 16px 10px; gap: 7px; }
+    .cat-hub-icon  { font-size: 28px; }
+    .cat-hub-label { font-size: 9px; letter-spacing: 1px; }
+    .cat-hub-sub   { font-size: 9px; }
+
+    /* Icon containers compact on mobile */
+    .gen-icon        { width: 38px; height: 38px; font-size: 20px; }
+    .upg-icon        { width: 36px; height: 36px; font-size: 18px; }
+    .shop-item-icon  { width: 40px; height: 40px; font-size: 22px; }
+    .skill-item-icon { width: 40px; height: 40px; font-size: 22px; }
+    .ach-icon        { width: 36px; height: 36px; font-size: 19px; }
+
+    /* Generator qty row — small mobile portrait */
+    .gen-item         { padding: 8px 10px; }
+    .gen-item-footer  { margin-top: 7px; padding-top: 6px; gap: 5px; }
+    .gen-qty-row      { gap: 3px; }
+    .gen-qty-btn      { height: 22px; min-width: 24px; padding: 0 4px; font-size: 7px; }
+    .gen-qty-max      { min-width: 28px; }
+    .gen-buy-btn      { min-width: 62px; font-size: 10px; padding: 4px 6px; }
+}
+
+/* ── Premium Shop — Tablet (≤1024px) ── */
+@media (max-width: 1024px) {
+    .pshop-icon          { width: 54px; height: 54px; font-size: 28px; }
+    .pshop-icon--skin    { width: 46px; height: 46px; font-size: 24px; }
+    .pshop-icon--std     { width: 40px; height: 40px; font-size: 20px; }
+    .pshop-title         { font-size: 10px; }
+    .pshop-price         { font-size: 13px; }
+}
+
+/* ── Premium Shop — Mobile (≤768px) ── */
+@media (max-width: 768px) {
+    .pshop-card          { padding: 14px 14px; gap: 12px; }
+    .pshop-card--skin    { padding: 12px 12px; }
+    .pshop-card--std     { padding: 10px 12px; }
+    .pshop-icon          { width: 50px; height: 50px; font-size: 26px; }
+    .pshop-icon--skin    { width: 42px; height: 42px; font-size: 22px; }
+    .pshop-icon--std     { width: 38px; height: 38px; font-size: 19px; }
+    .pshop-title         { font-size: 10px; letter-spacing: 1px; }
+    .pshop-subtitle      { font-size: 9px; }
+    .pshop-benefit       { font-size: 9px; }
+    .pshop-price         { font-size: 13px; }
+    .pshop-buy-btn       { padding: 7px 12px; font-size: 9px; }
+    .pshop-equip-btn     { padding: 5px 10px; font-size: 9px; }
+    .pshop-owned-badge   { padding: 4px 8px; font-size: 8px; }
+    .pshop-section-title { font-size: 8px; }
+}
+
+/* ── Premium Shop — Small Mobile (≤480px) ── */
+@media (max-width: 480px) {
+    .pshop-card          { padding: 12px 12px; gap: 10px; margin-bottom: 6px; }
+    .pshop-card--skin    { padding: 10px 10px; }
+    .pshop-card--std     { padding: 9px 10px; }
+    .pshop-icon          { width: 44px; height: 44px; font-size: 24px; }
+    .pshop-icon--skin    { width: 38px; height: 38px; font-size: 20px; }
+    .pshop-icon--std     { width: 34px; height: 34px; font-size: 18px; }
+    .pshop-title         { font-size: 9px; letter-spacing: 0.8px; }
+    .pshop-title-std     { font-size: 10px; }
+    .pshop-subtitle      { font-size: 9px; margin-bottom: 5px; }
+    .pshop-benefit       { font-size: 9px; }
+    .pshop-price         { font-size: 12px; }
+    .pshop-buy-btn       { padding: 6px 10px; font-size: 9px; letter-spacing: 0.5px; }
+    .pshop-equip-btn     { padding: 5px 8px; font-size: 8px; }
+    .pshop-rarity-badge,
+    .pshop-pop-badge,
+    .pshop-skin-badge    { font-size: 7px; padding: 1px 4px; }
+    .pshop-duration      { font-size: 7px; }
+    .pshop-benefits      { display: none; }
+}
+
+/* ── Boost overlay — mobile ── */
+@media (max-width: 768px) {
+    #boost-display {
+        bottom: 68px; /* clear mobile nav */
+        left: 8px;
+        max-width: 160px;
+    }
+    .boost-card          { padding: 5px 8px; gap: 6px; min-width: 120px; }
+    .boost-card-icon     { font-size: 14px; }
+    .boost-card-name     { font-size: 8px; }
+    .boost-card-meta     { font-size: 8px; }
+}
+@media (max-width: 480px) {
+    #boost-display       { left: 6px; bottom: 66px; max-width: 140px; }
+    .boost-card          { padding: 4px 7px; gap: 5px; min-width: 110px; }
+    .boost-card-icon     { font-size: 13px; }
+    .boost-card-name     { font-size: 7.5px; }
+    .boost-card-meta     { font-size: 7.5px; }
+    .boost-card-bar      { display: none; } /* hide bar on very small screens */
+}
+
+/* ── Leaderboard Podium — Mobile ── */
+@media (max-width: 480px) {
+    .lb-pod-card        { padding: 6px 4px 8px; }
+    .lb-pod-name        { font-size: 9px; }
+    .lb-pod-1st .lb-pod-name { font-size: 10px; }
+    .lb-pod-score       { font-size: 9px; }
+    .lb-pod-1st .lb-pod-score { font-size: 10px; }
+    .lb-pod-sub         { font-size: 7px; }
+    .lb-pod-medal       { font-size: 18px; margin-bottom: 3px; }
+    .lb-pod-1st .lb-pod-medal { font-size: 24px; }
+    .lb-pod-1st .lb-pod-pedestal { height: 40px; }
+    .lb-pod-2nd .lb-pod-pedestal { height: 26px; }
+    .lb-pod-3rd .lb-pod-pedestal { height: 16px; }
+}
+
+/* Touch specifics */
+@media (hover: none) and (pointer: coarse) {
+    .sidebar-btn, .mobile-nav-btn, .gen-buy-btn, .mission-claim-btn, .tab-btn {
+        min-height: 44px; /* touch targets */
+    }
+}
+
+/* Prefers reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    *, ::before, ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}

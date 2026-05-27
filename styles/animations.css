@@ -1,0 +1,194 @@
+/* ── Keyframes ── */
+
+@keyframes orb-pulse {
+    0%, 100% {
+        box-shadow: 0 0 30px rgba(0,245,255,0.3), 0 0 60px rgba(0,245,255,0.1), inset 0 0 40px rgba(0,245,255,0.06);
+    }
+    50% {
+        box-shadow: 0 0 50px rgba(0,245,255,0.5), 0 0 100px rgba(0,245,255,0.2), inset 0 0 50px rgba(0,245,255,0.1);
+    }
+}
+
+@keyframes spin {
+    from { transform: translate(-50%,-50%) rotate(0deg); }
+    to   { transform: translate(-50%,-50%) rotate(360deg); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-6px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes combo-pop {
+    0%   { transform: scale(0.5) translateY(6px); opacity: 0; }
+    65%  { transform: scale(1.15); opacity: 1; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes glow-flicker {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.65; }
+}
+
+@keyframes scan-line {
+    0%   { top: calc(var(--hud-h, 55px) + 3px); opacity: 0.6; }
+    80%  { opacity: 0.6; }
+    100% { top: 100vh; opacity: 0; }
+}
+
+@keyframes border-flow {
+    0%   { border-color: var(--cyan); }
+    33%  { border-color: var(--purple); }
+    66%  { border-color: var(--pink); }
+    100% { border-color: var(--cyan); }
+}
+
+@keyframes buy-pulse {
+    0%   { box-shadow: 0 0 0 0   rgba(0,245,255,0.55); }
+    100% { box-shadow: 0 0 0 10px rgba(0,245,255,0); }
+}
+
+@keyframes click-squish {
+    0%   { transform: scale(1); }
+    40%  { transform: scale(0.91); }
+    75%  { transform: scale(1.03); }
+    100% { transform: scale(1); }
+}
+
+@keyframes crit-flash {
+    0%   { transform: scale(1);    filter: brightness(1); }
+    30%  { transform: scale(0.86); filter: brightness(2.2); }
+    70%  { transform: scale(1.06); filter: brightness(1.6); }
+    100% { transform: scale(1);    filter: brightness(1); }
+}
+
+@keyframes level-up-bounce {
+    0%   { transform: scale(1); }
+    30%  { transform: scale(1.45); }
+    60%  { transform: scale(0.92); }
+    80%  { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+@keyframes achievement-pop {
+    0%   { transform: scale(0.85) translateY(8px); opacity: 0; }
+    65%  { transform: scale(1.04); opacity: 1; }
+    100% { transform: scale(1); }
+}
+
+@keyframes prestige-wave {
+    0%   { background: rgba(123,47,255,0); }
+    50%  { background: rgba(123,47,255,0.35); }
+    100% { background: rgba(123,47,255,0); }
+}
+
+/* ── Applied animations ── */
+
+/* Click button states */
+#click-btn.click-anim { animation: click-squish 0.18s ease forwards; }
+#click-btn.crit-anim  { animation: crit-flash   0.3s  ease forwards; }
+
+/* Generator buy pulse (only when affordable) */
+.gen-buy-btn.can-afford { animation: buy-pulse 1.4s ease-in-out infinite; }
+
+/* Achievement newly unlocked */
+.achievement-item.done.just-unlocked {
+    animation: achievement-pop 0.5s cubic-bezier(0.34,1.56,0.64,1) forwards;
+}
+
+/* Prestige button glow */
+#prestige-btn:not(:disabled) { animation: glow-flicker 2.2s ease-in-out infinite; }
+
+/* Event banner entrance & color cycle */
+#event-banner[style*="flex"] {
+    animation: fadeIn 0.4s ease, border-flow 4s linear infinite;
+}
+
+/* Scan line across the viewport */
+#game-container::before {
+    content: '';
+    position: fixed; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(transparent, rgba(0,245,255,0.04), transparent);
+    animation: scan-line 7s linear infinite;
+    pointer-events: none; z-index: 5;
+}
+
+/* Level-up indicator */
+.level-flash { animation: level-up-bounce 0.55s cubic-bezier(0.34,1.56,0.64,1); }
+
+/* Combo pop-in */
+#combo-display { animation: combo-pop 0.3s cubic-bezier(0.34,1.56,0.64,1); }
+
+/* ── New Animations for Modal Layout ── */
+
+@keyframes pulse-cyan {
+    0% { box-shadow: 0 0 0 0 rgba(0, 245, 255, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(0, 245, 255, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(0, 245, 255, 0); }
+}
+
+@keyframes reward-pulse {
+    0%   { box-shadow: 0 0 6px rgba(0,245,255,0.25), inset 0 0 0 0 transparent; }
+    50%  { box-shadow: 0 0 18px rgba(0,245,255,0.55), inset 0 0 8px rgba(0,245,255,0.1); }
+    100% { box-shadow: 0 0 6px rgba(0,245,255,0.25), inset 0 0 0 0 transparent; }
+}
+
+@keyframes mission-complete-celeb {
+    0% { transform: scale(1); background: rgba(8,8,25,0.6); }
+    20% { transform: scale(1.02); background: rgba(0,245,255,0.1); }
+    100% { transform: scale(1); background: rgba(8,8,25,0.6); }
+}
+
+@keyframes slide-in-bottom {
+    from { transform: translateY(100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+#mobile-nav {
+    animation: slide-in-bottom 0.4s ease-out;
+}
+
+@keyframes slide-in-right {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
+}
+
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+.mission-fill.shimmer-active {
+    background: linear-gradient(90deg, var(--cyan) 25%, #fff 50%, var(--purple) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite linear;
+}
+
+@keyframes panel-slide-in {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.modal-body > * {
+    animation: panel-slide-in 0.3s ease-out forwards;
+}
+
+/* Leaderboard row staggered entrance */
+@keyframes lb-row-in {
+    from { opacity: 0; transform: translateX(-10px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+.lb-row {
+    animation: lb-row-in 0.25s ease-out both;
+}
+.lb-list .lb-row:nth-child(1)  { animation-delay: 0.02s; }
+.lb-list .lb-row:nth-child(2)  { animation-delay: 0.04s; }
+.lb-list .lb-row:nth-child(3)  { animation-delay: 0.06s; }
+.lb-list .lb-row:nth-child(4)  { animation-delay: 0.08s; }
+.lb-list .lb-row:nth-child(5)  { animation-delay: 0.10s; }
+.lb-list .lb-row:nth-child(6)  { animation-delay: 0.12s; }
+.lb-list .lb-row:nth-child(7)  { animation-delay: 0.14s; }
+.lb-list .lb-row:nth-child(8)  { animation-delay: 0.16s; }
+.lb-list .lb-row:nth-child(9)  { animation-delay: 0.18s; }
+.lb-list .lb-row:nth-child(10) { animation-delay: 0.20s; }
+.lb-list .lb-row:nth-child(n+11) { animation-delay: 0.22s; }

@@ -1,0 +1,470 @@
+/* ═══════════════════════════════════════════════════════════════
+   NEXUS CORE — Skin Themes
+   Each body[data-skin="X"] block overrides CSS variables and
+   re-skins all hardcoded rgba components so the entire UI
+   atmosphere transforms with each equipped skin.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ────────────────────────────────────────
+   HELPER: strip skin on equip so default
+   colours are fully restored when no skin
+   ──────────────────────────────────────── */
+body:not([data-skin]) { /* already :root defaults — no action needed */ }
+
+
+/* ═══════════════════════════════════════
+   🎄  CHRISTMAS  — Crimson · Forest Green · Gold
+   ═══════════════════════════════════════ */
+body[data-skin="christmas"] {
+    --cyan:   #dc143c;
+    --purple: #228b22;
+    --pink:   #f0c000;
+    --bg:     #030b05;
+    --panel:  rgba(3,10,5,0.92);
+    --border: rgba(220,20,60,0.20);
+    --text:          #ddeedd;
+    --text-dim:      rgba(220,238,220,0.50);
+    --scrollbar-thumb: rgba(220,20,60,0.30);
+}
+
+/* HUD */
+body[data-skin="christmas"] #hud {
+    background: rgba(3,12,5,0.96);
+    border-bottom-color: rgba(220,20,60,0.18);
+}
+
+/* Modal glow */
+body[data-skin="christmas"] #modal-panel {
+    box-shadow: 0 0 40px rgba(220,20,60,0.12), 0 0 80px rgba(0,0,0,0.85);
+}
+
+/* ── Click button ── */
+body[data-skin="christmas"] #click-btn {
+    border-color: #dc143c;
+    background: radial-gradient(circle at 40% 35%,
+        rgba(220,20,60,0.18), rgba(34,139,34,0.12) 60%, transparent 90%);
+    box-shadow:
+        0 0 30px rgba(220,20,60,0.35),
+        0 0 60px rgba(220,20,60,0.12),
+        inset 0 0 40px rgba(220,20,60,0.06);
+}
+body[data-skin="christmas"] #click-btn:hover {
+    box-shadow:
+        0 0 50px rgba(220,20,60,0.55),
+        0 0 100px rgba(220,20,60,0.22),
+        inset 0 0 40px rgba(220,20,60,0.10);
+    border-color: #ff3355;
+}
+body[data-skin="christmas"] .orb-core {
+    background: radial-gradient(circle at 35% 30%,
+        rgba(220,20,60,0.92), rgba(34,139,34,0.72) 50%, rgba(240,192,0,0.35));
+    box-shadow: 0 0 32px #dc143c, inset 0 0 20px rgba(220,20,60,0.30);
+}
+body[data-skin="christmas"] .orbit-ring          { border-color: rgba(220,20,60,0.24); }
+body[data-skin="christmas"] .ring-2              { border-color: rgba(34,139,34,0.20); }
+body[data-skin="christmas"] .ring-3              { border-color: rgba(240,192,0,0.14); }
+body[data-skin="christmas"] .ring-1 .ring-dot    { background:#dc143c; box-shadow:0 0 6px #dc143c; }
+body[data-skin="christmas"] .ring-2 .ring-dot    { background:#228b22; box-shadow:0 0 6px #228b22; }
+body[data-skin="christmas"] .ring-3 .ring-dot    { background:#f0c000; box-shadow:0 0 6px #f0c000; }
+
+/* ── Generator cards ── */
+body[data-skin="christmas"] .gen-item {
+    border-color: rgba(220,20,60,0.22);
+    background: linear-gradient(135deg, rgba(220,20,60,0.06) 0%, rgba(3,10,5,0.96) 65%);
+}
+body[data-skin="christmas"] .gen-item:hover {
+    border-color: rgba(220,20,60,0.50);
+    background: linear-gradient(135deg, rgba(220,20,60,0.10) 0%, rgba(3,10,5,0.96) 70%);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.10),
+                0 3px 0 rgba(0,0,0,0.55),
+                0 0 20px rgba(220,20,60,0.14),
+                0 6px 18px rgba(0,0,0,0.35);
+}
+body[data-skin="christmas"] .gen-icon {
+    background: rgba(220,20,60,0.08);
+    border-color: rgba(220,20,60,0.22);
+}
+/* ── Upgrade cards ── */
+body[data-skin="christmas"] .upgrade-item {
+    border-color: rgba(34,139,34,0.20);
+    background: linear-gradient(135deg, rgba(34,139,34,0.05) 0%, rgba(3,10,5,0.96) 65%);
+}
+body[data-skin="christmas"] .upgrade-item:hover {
+    border-color: rgba(34,139,34,0.50);
+    background: linear-gradient(135deg, rgba(34,139,34,0.09) 0%, rgba(3,10,5,0.96) 70%);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.08),
+                0 3px 0 rgba(0,0,0,0.55),
+                0 0 20px rgba(34,139,34,0.16),
+                0 6px 16px rgba(0,0,0,0.30);
+}
+body[data-skin="christmas"] .upgrade-item.can-afford {
+    border-color: rgba(34,139,34,0.44);
+    background: linear-gradient(135deg, rgba(34,139,34,0.09) 0%, rgba(3,10,5,0.96) 65%);
+}
+body[data-skin="christmas"] .upg-icon   { background:rgba(34,139,34,0.10); border-color:rgba(34,139,34,0.24); }
+body[data-skin="christmas"] .upg-cost   { color: #6cbb6c; }
+/* ── Qty buttons active ── */
+body[data-skin="christmas"] .gen-qty-btn        { border-color:rgba(220,20,60,0.20); }
+body[data-skin="christmas"] .gen-qty-btn.active { border-color:#dc143c; color:#dc143c; background:rgba(220,20,60,0.14); box-shadow:0 2px 0 rgba(0,0,0,0.35),0 0 10px rgba(220,20,60,0.25); }
+/* ── Mission progress bar ── */
+body[data-skin="christmas"] .mission-fill { background: linear-gradient(90deg, #dc143c, #228b22); }
+body[data-skin="christmas"] .mission-item:hover { border-color: rgba(220,20,60,0.30); background: rgba(220,20,60,0.03); }
+/* ── Skill / Shop items ── */
+body[data-skin="christmas"] .skill-item  { border-color:rgba(34,139,34,0.20); background:linear-gradient(135deg,rgba(34,139,34,0.05) 0%,rgba(3,10,5,0.96) 65%); }
+body[data-skin="christmas"] .shop-item   { border-color:rgba(220,20,60,0.18); background:linear-gradient(135deg,rgba(220,20,60,0.04) 0%,rgba(3,10,5,0.96) 65%); }
+
+
+/* ═══════════════════════════════════════
+   🎃  HALLOWEEN  — Sinister Orange · Deep Purple
+   ═══════════════════════════════════════ */
+body[data-skin="halloween"] {
+    --cyan:   #ff6400;
+    --purple: #9b30ff;
+    --pink:   #ff00dd;
+    --bg:     #050008;
+    --panel:  rgba(5,0,10,0.93);
+    --border: rgba(255,100,0,0.20);
+    --text:          #f2d8cc;
+    --text-dim:      rgba(242,216,204,0.50);
+    --scrollbar-thumb: rgba(255,100,0,0.30);
+}
+
+body[data-skin="halloween"] #hud {
+    background: rgba(5,0,9,0.97);
+    border-bottom-color: rgba(255,100,0,0.16);
+}
+body[data-skin="halloween"] #modal-panel {
+    box-shadow: 0 0 40px rgba(255,100,0,0.10), 0 0 80px rgba(0,0,0,0.9);
+}
+
+body[data-skin="halloween"] #click-btn {
+    border-color: #ff6400;
+    background: radial-gradient(circle at 40% 35%,
+        rgba(255,100,0,0.18), rgba(155,48,255,0.12) 60%, transparent 90%);
+    box-shadow:
+        0 0 30px rgba(255,100,0,0.35),
+        0 0 60px rgba(255,100,0,0.10),
+        inset 0 0 40px rgba(255,100,0,0.06);
+}
+body[data-skin="halloween"] #click-btn:hover {
+    box-shadow:
+        0 0 50px rgba(255,100,0,0.55),
+        0 0 100px rgba(255,100,0,0.20),
+        inset 0 0 40px rgba(255,100,0,0.10);
+    border-color: #ff8833;
+}
+body[data-skin="halloween"] .orb-core {
+    background: radial-gradient(circle at 35% 30%,
+        rgba(255,100,0,0.92), rgba(155,48,255,0.72) 50%, rgba(255,0,200,0.30));
+    box-shadow: 0 0 32px #ff6400, inset 0 0 20px rgba(255,100,0,0.28);
+}
+body[data-skin="halloween"] .orbit-ring          { border-color: rgba(255,100,0,0.24); }
+body[data-skin="halloween"] .ring-2              { border-color: rgba(155,48,255,0.20); }
+body[data-skin="halloween"] .ring-3              { border-color: rgba(255,0,200,0.14); }
+body[data-skin="halloween"] .ring-1 .ring-dot    { background:#ff6400; box-shadow:0 0 6px #ff6400; }
+body[data-skin="halloween"] .ring-2 .ring-dot    { background:#9b30ff; box-shadow:0 0 6px #9b30ff; }
+body[data-skin="halloween"] .ring-3 .ring-dot    { background:#ff00dd; box-shadow:0 0 6px #ff00dd; }
+
+body[data-skin="halloween"] .gen-item {
+    border-color: rgba(255,100,0,0.22);
+    background: linear-gradient(135deg, rgba(255,100,0,0.06) 0%, rgba(5,0,8,0.96) 65%);
+}
+body[data-skin="halloween"] .gen-item:hover {
+    border-color: rgba(255,100,0,0.50);
+    background: linear-gradient(135deg, rgba(255,100,0,0.10) 0%, rgba(5,0,8,0.96) 70%);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.08),
+                0 3px 0 rgba(0,0,0,0.55),
+                0 0 20px rgba(255,100,0,0.14),
+                0 6px 18px rgba(0,0,0,0.40);
+}
+body[data-skin="halloween"] .gen-icon { background:rgba(255,100,0,0.08); border-color:rgba(255,100,0,0.22); }
+
+body[data-skin="halloween"] .upgrade-item {
+    border-color: rgba(155,48,255,0.20);
+    background: linear-gradient(135deg, rgba(155,48,255,0.05) 0%, rgba(5,0,8,0.96) 65%);
+}
+body[data-skin="halloween"] .upgrade-item:hover {
+    border-color: rgba(155,48,255,0.50);
+    background: linear-gradient(135deg, rgba(155,48,255,0.09) 0%, rgba(5,0,8,0.96) 70%);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.08),
+                0 3px 0 rgba(0,0,0,0.55),
+                0 0 20px rgba(155,48,255,0.14),
+                0 6px 16px rgba(0,0,0,0.30);
+}
+body[data-skin="halloween"] .upgrade-item.can-afford { border-color:rgba(155,48,255,0.44); background:linear-gradient(135deg,rgba(155,48,255,0.09) 0%,rgba(5,0,8,0.96) 65%); }
+body[data-skin="halloween"] .upg-icon  { background:rgba(155,48,255,0.10); border-color:rgba(155,48,255,0.24); }
+body[data-skin="halloween"] .upg-cost  { color: #c870ff; }
+
+body[data-skin="halloween"] .gen-qty-btn        { border-color:rgba(255,100,0,0.20); }
+body[data-skin="halloween"] .gen-qty-btn.active { border-color:#ff6400; color:#ff6400; background:rgba(255,100,0,0.14); box-shadow:0 2px 0 rgba(0,0,0,0.35),0 0 10px rgba(255,100,0,0.25); }
+body[data-skin="halloween"] .mission-fill { background: linear-gradient(90deg, #ff6400, #9b30ff); }
+body[data-skin="halloween"] .mission-item:hover { border-color:rgba(255,100,0,0.30); background:rgba(255,100,0,0.03); }
+body[data-skin="halloween"] .skill-item  { border-color:rgba(155,48,255,0.20); background:linear-gradient(135deg,rgba(155,48,255,0.05) 0%,rgba(5,0,8,0.96) 65%); }
+body[data-skin="halloween"] .shop-item   { border-color:rgba(255,100,0,0.18); background:linear-gradient(135deg,rgba(255,100,0,0.04) 0%,rgba(5,0,8,0.96) 65%); }
+
+
+/* ═══════════════════════════════════════
+   🎆  NEW YEAR  — Gold · Silver · Celebratory
+   ═══════════════════════════════════════ */
+body[data-skin="newyear"] {
+    --cyan:   #ffd700;
+    --purple: #c0c0c0;
+    --pink:   #ff8c00;
+    --bg:     #030308;
+    --panel:  rgba(3,3,12,0.92);
+    --border: rgba(255,215,0,0.20);
+    --text:          #f5f0dc;
+    --text-dim:      rgba(245,240,220,0.50);
+    --scrollbar-thumb: rgba(255,215,0,0.30);
+}
+
+body[data-skin="newyear"] #hud {
+    background: rgba(3,3,12,0.97);
+    border-bottom-color: rgba(255,215,0,0.16);
+}
+body[data-skin="newyear"] #modal-panel {
+    box-shadow: 0 0 40px rgba(255,215,0,0.10), 0 0 80px rgba(0,0,0,0.88);
+}
+
+body[data-skin="newyear"] #click-btn {
+    border-color: #ffd700;
+    background: radial-gradient(circle at 40% 35%,
+        rgba(255,215,0,0.18), rgba(192,192,192,0.10) 60%, transparent 90%);
+    box-shadow:
+        0 0 30px rgba(255,215,0,0.38),
+        0 0 60px rgba(255,215,0,0.12),
+        inset 0 0 40px rgba(255,215,0,0.06);
+}
+body[data-skin="newyear"] #click-btn:hover {
+    box-shadow:
+        0 0 50px rgba(255,215,0,0.58),
+        0 0 100px rgba(255,215,0,0.22),
+        inset 0 0 40px rgba(255,215,0,0.10);
+    border-color: #ffe84d;
+}
+body[data-skin="newyear"] .orb-core {
+    background: radial-gradient(circle at 35% 30%,
+        rgba(255,215,0,0.92), rgba(192,192,192,0.70) 50%, rgba(255,140,0,0.35));
+    box-shadow: 0 0 32px #ffd700, inset 0 0 20px rgba(255,215,0,0.28);
+}
+body[data-skin="newyear"] .orbit-ring          { border-color: rgba(255,215,0,0.28); }
+body[data-skin="newyear"] .ring-2              { border-color: rgba(192,192,192,0.20); }
+body[data-skin="newyear"] .ring-3              { border-color: rgba(255,140,0,0.16); }
+body[data-skin="newyear"] .ring-1 .ring-dot    { background:#ffd700; box-shadow:0 0 6px #ffd700; }
+body[data-skin="newyear"] .ring-2 .ring-dot    { background:#c0c0c0; box-shadow:0 0 6px #c0c0c0; }
+body[data-skin="newyear"] .ring-3 .ring-dot    { background:#ff8c00; box-shadow:0 0 6px #ff8c00; }
+
+body[data-skin="newyear"] .gen-item {
+    border-color: rgba(255,215,0,0.22);
+    background: linear-gradient(135deg, rgba(255,215,0,0.05) 0%, rgba(3,3,10,0.96) 65%);
+}
+body[data-skin="newyear"] .gen-item:hover {
+    border-color: rgba(255,215,0,0.52);
+    background: linear-gradient(135deg, rgba(255,215,0,0.09) 0%, rgba(3,3,10,0.96) 70%);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.10),
+                0 3px 0 rgba(0,0,0,0.55),
+                0 0 20px rgba(255,215,0,0.14),
+                0 6px 18px rgba(0,0,0,0.35);
+}
+body[data-skin="newyear"] .gen-icon { background:rgba(255,215,0,0.07); border-color:rgba(255,215,0,0.22); }
+
+body[data-skin="newyear"] .upgrade-item {
+    border-color: rgba(192,192,192,0.18);
+    background: linear-gradient(135deg, rgba(192,192,192,0.04) 0%, rgba(3,3,10,0.96) 65%);
+}
+body[data-skin="newyear"] .upgrade-item:hover {
+    border-color: rgba(192,192,192,0.45);
+    background: linear-gradient(135deg, rgba(192,192,192,0.08) 0%, rgba(3,3,10,0.96) 70%);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.08),
+                0 3px 0 rgba(0,0,0,0.55),
+                0 0 20px rgba(192,192,192,0.12),
+                0 6px 16px rgba(0,0,0,0.30);
+}
+body[data-skin="newyear"] .upgrade-item.can-afford { border-color:rgba(192,192,192,0.40); background:linear-gradient(135deg,rgba(192,192,192,0.07) 0%,rgba(3,3,10,0.96) 65%); }
+body[data-skin="newyear"] .upg-icon  { background:rgba(192,192,192,0.08); border-color:rgba(192,192,192,0.22); }
+body[data-skin="newyear"] .upg-cost  { color: #d4d4d4; }
+
+body[data-skin="newyear"] .gen-qty-btn        { border-color:rgba(255,215,0,0.20); }
+body[data-skin="newyear"] .gen-qty-btn.active { border-color:#ffd700; color:#ffd700; background:rgba(255,215,0,0.12); box-shadow:0 2px 0 rgba(0,0,0,0.35),0 0 12px rgba(255,215,0,0.28); }
+body[data-skin="newyear"] .mission-fill { background: linear-gradient(90deg, #ffd700, #c0c0c0); }
+body[data-skin="newyear"] .mission-item:hover { border-color:rgba(255,215,0,0.30); background:rgba(255,215,0,0.03); }
+body[data-skin="newyear"] .skill-item  { border-color:rgba(192,192,192,0.18); background:linear-gradient(135deg,rgba(192,192,192,0.04) 0%,rgba(3,3,10,0.96) 65%); }
+body[data-skin="newyear"] .shop-item   { border-color:rgba(255,215,0,0.18); background:linear-gradient(135deg,rgba(255,215,0,0.04) 0%,rgba(3,3,10,0.96) 65%); }
+
+
+/* ═══════════════════════════════════════
+   🤖  CYBERPUNK  — Hot Pink · Electric Cyan · Scanlines
+   ═══════════════════════════════════════ */
+body[data-skin="cyberpunk"] {
+    --cyan:   #ff0080;
+    --purple: #00f5ff;
+    --pink:   #ff00ff;
+    --bg:     #020010;
+    --panel:  rgba(2,0,18,0.95);
+    --border: rgba(255,0,128,0.22);
+    --text:          #f0c8e0;
+    --text-dim:      rgba(240,200,224,0.50);
+    --scrollbar-thumb: rgba(255,0,128,0.30);
+}
+
+body[data-skin="cyberpunk"] #hud {
+    background: rgba(2,0,14,0.98);
+    border-bottom-color: rgba(255,0,128,0.20);
+}
+body[data-skin="cyberpunk"] #modal-panel {
+    box-shadow: 0 0 40px rgba(255,0,128,0.14), 0 0 80px rgba(0,0,0,0.92);
+}
+
+body[data-skin="cyberpunk"] #click-btn {
+    border-color: #ff0080;
+    background: radial-gradient(circle at 40% 35%,
+        rgba(255,0,128,0.18), rgba(0,245,255,0.12) 60%, transparent 90%);
+    box-shadow:
+        0 0 30px rgba(255,0,128,0.40),
+        0 0 60px rgba(255,0,128,0.12),
+        inset 0 0 40px rgba(255,0,128,0.07);
+}
+body[data-skin="cyberpunk"] #click-btn:hover {
+    box-shadow:
+        0 0 50px rgba(255,0,128,0.60),
+        0 0 100px rgba(255,0,128,0.24),
+        inset 0 0 40px rgba(255,0,128,0.12);
+    border-color: #ff44aa;
+}
+body[data-skin="cyberpunk"] .orb-core {
+    background: radial-gradient(circle at 35% 30%,
+        rgba(255,0,128,0.92), rgba(0,245,255,0.72) 50%, rgba(255,0,255,0.32));
+    box-shadow: 0 0 32px #ff0080, inset 0 0 20px rgba(255,0,128,0.30);
+}
+body[data-skin="cyberpunk"] .orbit-ring          { border-color: rgba(255,0,128,0.28); }
+body[data-skin="cyberpunk"] .ring-2              { border-color: rgba(0,245,255,0.22); }
+body[data-skin="cyberpunk"] .ring-3              { border-color: rgba(255,0,255,0.16); }
+body[data-skin="cyberpunk"] .ring-1 .ring-dot    { background:#ff0080; box-shadow:0 0 8px #ff0080; }
+body[data-skin="cyberpunk"] .ring-2 .ring-dot    { background:#00f5ff; box-shadow:0 0 8px #00f5ff; }
+body[data-skin="cyberpunk"] .ring-3 .ring-dot    { background:#ff00ff; box-shadow:0 0 8px #ff00ff; }
+
+body[data-skin="cyberpunk"] .gen-item {
+    border-color: rgba(255,0,128,0.24);
+    background: linear-gradient(135deg, rgba(255,0,128,0.06) 0%, rgba(2,0,16,0.97) 65%);
+}
+body[data-skin="cyberpunk"] .gen-item:hover {
+    border-color: rgba(255,0,128,0.55);
+    background: linear-gradient(135deg, rgba(255,0,128,0.10) 0%, rgba(2,0,16,0.97) 70%);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.10),
+                0 3px 0 rgba(0,0,0,0.60),
+                0 0 22px rgba(255,0,128,0.16),
+                0 6px 18px rgba(0,0,0,0.45);
+}
+body[data-skin="cyberpunk"] .gen-icon { background:rgba(255,0,128,0.08); border-color:rgba(255,0,128,0.24); }
+
+body[data-skin="cyberpunk"] .upgrade-item {
+    border-color: rgba(0,245,255,0.20);
+    background: linear-gradient(135deg, rgba(0,245,255,0.04) 0%, rgba(2,0,16,0.97) 65%);
+}
+body[data-skin="cyberpunk"] .upgrade-item:hover {
+    border-color: rgba(0,245,255,0.52);
+    background: linear-gradient(135deg, rgba(0,245,255,0.08) 0%, rgba(2,0,16,0.97) 70%);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.08),
+                0 3px 0 rgba(0,0,0,0.60),
+                0 0 20px rgba(0,245,255,0.14),
+                0 6px 16px rgba(0,0,0,0.30);
+}
+body[data-skin="cyberpunk"] .upgrade-item.can-afford { border-color:rgba(0,245,255,0.45); background:linear-gradient(135deg,rgba(0,245,255,0.08) 0%,rgba(2,0,16,0.97) 65%); }
+body[data-skin="cyberpunk"] .upg-icon  { background:rgba(0,245,255,0.08); border-color:rgba(0,245,255,0.22); }
+body[data-skin="cyberpunk"] .upg-cost  { color: #60e8ff; }
+
+body[data-skin="cyberpunk"] .gen-qty-btn        { border-color:rgba(255,0,128,0.22); }
+body[data-skin="cyberpunk"] .gen-qty-btn.active { border-color:#ff0080; color:#ff0080; background:rgba(255,0,128,0.14); box-shadow:0 2px 0 rgba(0,0,0,0.35),0 0 10px rgba(255,0,128,0.28); }
+body[data-skin="cyberpunk"] .mission-fill { background: linear-gradient(90deg, #ff0080, #00f5ff); }
+body[data-skin="cyberpunk"] .mission-item:hover { border-color:rgba(255,0,128,0.32); background:rgba(255,0,128,0.03); }
+body[data-skin="cyberpunk"] .skill-item  { border-color:rgba(0,245,255,0.20); background:linear-gradient(135deg,rgba(0,245,255,0.04) 0%,rgba(2,0,16,0.97) 65%); }
+body[data-skin="cyberpunk"] .shop-item   { border-color:rgba(255,0,128,0.20); background:linear-gradient(135deg,rgba(255,0,128,0.04) 0%,rgba(2,0,16,0.97) 65%); }
+
+
+/* ═══════════════════════════════════════
+   👾  PIXEL NEON  — Neon Green · Magenta · Arcade Grid
+   ═══════════════════════════════════════ */
+body[data-skin="pixelneon"] {
+    --cyan:   #00ff88;
+    --purple: #ff00ff;
+    --pink:   #00ffff;
+    --bg:     #020008;
+    --panel:  rgba(2,0,10,0.94);
+    --border: rgba(0,255,136,0.20);
+    --text:          #ccffdd;
+    --text-dim:      rgba(204,255,221,0.50);
+    --scrollbar-thumb: rgba(0,255,136,0.28);
+}
+
+body[data-skin="pixelneon"] #hud {
+    background: rgba(2,0,10,0.98);
+    border-bottom-color: rgba(0,255,136,0.18);
+}
+body[data-skin="pixelneon"] #modal-panel {
+    box-shadow: 0 0 40px rgba(0,255,136,0.12), 0 0 80px rgba(0,0,0,0.92);
+}
+
+body[data-skin="pixelneon"] #click-btn {
+    border-color: #00ff88;
+    background: radial-gradient(circle at 40% 35%,
+        rgba(0,255,136,0.18), rgba(255,0,255,0.12) 60%, transparent 90%);
+    box-shadow:
+        0 0 30px rgba(0,255,136,0.38),
+        0 0 60px rgba(0,255,136,0.10),
+        inset 0 0 40px rgba(0,255,136,0.06);
+}
+body[data-skin="pixelneon"] #click-btn:hover {
+    box-shadow:
+        0 0 50px rgba(0,255,136,0.60),
+        0 0 100px rgba(0,255,136,0.22),
+        inset 0 0 40px rgba(0,255,136,0.10);
+    border-color: #44ffaa;
+}
+body[data-skin="pixelneon"] .orb-core {
+    background: radial-gradient(circle at 35% 30%,
+        rgba(0,255,136,0.92), rgba(255,0,255,0.72) 50%, rgba(0,255,255,0.32));
+    box-shadow: 0 0 32px #00ff88, inset 0 0 20px rgba(0,255,136,0.28);
+}
+body[data-skin="pixelneon"] .orbit-ring          { border-color: rgba(0,255,136,0.26); }
+body[data-skin="pixelneon"] .ring-2              { border-color: rgba(255,0,255,0.22); }
+body[data-skin="pixelneon"] .ring-3              { border-color: rgba(0,255,255,0.16); }
+body[data-skin="pixelneon"] .ring-1 .ring-dot    { background:#00ff88; box-shadow:0 0 8px #00ff88; }
+body[data-skin="pixelneon"] .ring-2 .ring-dot    { background:#ff00ff; box-shadow:0 0 8px #ff00ff; }
+body[data-skin="pixelneon"] .ring-3 .ring-dot    { background:#00ffff; box-shadow:0 0 8px #00ffff; }
+
+body[data-skin="pixelneon"] .gen-item {
+    border-color: rgba(0,255,136,0.22);
+    background: linear-gradient(135deg, rgba(0,255,136,0.05) 0%, rgba(2,0,8,0.97) 65%);
+}
+body[data-skin="pixelneon"] .gen-item:hover {
+    border-color: rgba(0,255,136,0.52);
+    background: linear-gradient(135deg, rgba(0,255,136,0.09) 0%, rgba(2,0,8,0.97) 70%);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.10),
+                0 3px 0 rgba(0,0,0,0.60),
+                0 0 20px rgba(0,255,136,0.14),
+                0 6px 18px rgba(0,0,0,0.40);
+}
+body[data-skin="pixelneon"] .gen-icon { background:rgba(0,255,136,0.07); border-color:rgba(0,255,136,0.22); }
+
+body[data-skin="pixelneon"] .upgrade-item {
+    border-color: rgba(255,0,255,0.20);
+    background: linear-gradient(135deg, rgba(255,0,255,0.04) 0%, rgba(2,0,8,0.97) 65%);
+}
+body[data-skin="pixelneon"] .upgrade-item:hover {
+    border-color: rgba(255,0,255,0.50);
+    background: linear-gradient(135deg, rgba(255,0,255,0.08) 0%, rgba(2,0,8,0.97) 70%);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.08),
+                0 3px 0 rgba(0,0,0,0.60),
+                0 0 20px rgba(255,0,255,0.14),
+                0 6px 16px rgba(0,0,0,0.30);
+}
+body[data-skin="pixelneon"] .upgrade-item.can-afford { border-color:rgba(255,0,255,0.44); background:linear-gradient(135deg,rgba(255,0,255,0.08) 0%,rgba(2,0,8,0.97) 65%); }
+body[data-skin="pixelneon"] .upg-icon  { background:rgba(255,0,255,0.08); border-color:rgba(255,0,255,0.22); }
+body[data-skin="pixelneon"] .upg-cost  { color: #ff80ff; }
+
+body[data-skin="pixelneon"] .gen-qty-btn        { border-color:rgba(0,255,136,0.22); }
+body[data-skin="pixelneon"] .gen-qty-btn.active { border-color:#00ff88; color:#00ff88; background:rgba(0,255,136,0.12); box-shadow:0 2px 0 rgba(0,0,0,0.35),0 0 12px rgba(0,255,136,0.28); }
+body[data-skin="pixelneon"] .mission-fill { background: linear-gradient(90deg, #00ff88, #ff00ff); }
+body[data-skin="pixelneon"] .mission-item:hover { border-color:rgba(0,255,136,0.32); background:rgba(0,255,136,0.03); }
+body[data-skin="pixelneon"] .skill-item  { border-color:rgba(255,0,255,0.20); background:linear-gradient(135deg,rgba(255,0,255,0.04) 0%,rgba(2,0,8,0.97) 65%); }
+body[data-skin="pixelneon"] .shop-item   { border-color:rgba(0,255,136,0.20); background:linear-gradient(135deg,rgba(0,255,136,0.04) 0%,rgba(2,0,8,0.97) 65%); }
