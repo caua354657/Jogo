@@ -14,6 +14,7 @@ class GameManager {
         this.skills = new SkillManager(this.economy, this.upgradeManager);
         this.account = new AccountManager();
         this.randomEvents = new RandomEventManager(this.boosts, this.economy, this.events);
+        this.boss = new BossManager(this);
         this.ui = new UIManager(this);
         this.notifications = new NotificationManager(this.events);
         this.tutorial = new TutorialManager(this.events, this.missions);
@@ -84,8 +85,10 @@ class GameManager {
         this.events.on('missionClaimed',  () => this.audio.upgrade());
         this.events.on('missionsClaimed', () => this.audio.upgrade());
         this.events.on('comboUp', () => { if (this.combo.getLevel() >= 2) this.audio.notification(); });
-        this.events.on('randomEvent', () => this.audio.event());
-        this.events.on('boostAdded', () => {});
+        this.events.on('randomEvent',   () => this.audio.event());
+        this.events.on('boostAdded',    () => {});
+        this.events.on('bossDefeated',  () => this.audio.achievement());
+        this.events.on('bossHit',       () => this.audio.click?.());
     }
 
     _loop(timestamp) {
@@ -111,6 +114,7 @@ class GameManager {
         this._particles.update();
         this.boosts.update();
         this.randomEvents.update();
+        this.boss.tick(dt);
         this.ui.update(dt);
 
         this._autoSaveTimer += dt;

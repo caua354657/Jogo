@@ -182,7 +182,7 @@ class UIManager {
         // Highlight the parent group sidebar button when in a sub-panel
         const panelGroup = {
             generators: 'neural', upgrades: 'neural', skills: 'neural', rebirth: 'neural',
-            missions: 'agenda', achievements: 'agenda', leaderboard: 'agenda',
+            missions: 'agenda', achievements: 'agenda', leaderboard: 'agenda', boss: 'agenda',
             profile: 'conta', settings: 'conta'
         };
         const groupId = panelGroup[panelId] || panelId;
@@ -198,7 +198,8 @@ class UIManager {
     }
 
     closePanel() {
-        if (this._lbRefreshTimer) { clearInterval(this._lbRefreshTimer); this._lbRefreshTimer = null; }
+        if (this._lbRefreshTimer)   { clearInterval(this._lbRefreshTimer);   this._lbRefreshTimer   = null; }
+        if (this._game?.boss) this._game.boss.stopPolling();
         if (this._parentPanel) {
             const parent = this._parentPanel;
             this._parentPanel = null;
@@ -239,6 +240,7 @@ class UIManager {
             case 'achievements': this._renderAchievements(content); break;
             case 'missions':     this._renderMissions(content, tabsContainer); break;
             case 'leaderboard':  this._renderLeaderboard(content); break;
+            case 'boss':         this._renderBoss(content); break;
             case 'profile':      this._renderProfile(content); break;
             case 'settings':     this._renderSettings(content); break;
             case 'shop':         this._renderShop(content, tabsContainer); break;
@@ -639,6 +641,7 @@ class UIManager {
         if (this._activePanel === 'generators') this._updateGenerators();
         if (this._activePanel === 'upgrades') this._updateUpgrades();
         if (this._activePanel === 'missions') this._updateMissions();
+        if (this._activePanel === 'boss') this._updateBossPanel();
         if (this._activePanel === 'profile') this._updateProfileStats();
         if (this._activePanel === 'shop') this._updateShop();
         if (this._activePanel === 'skills') this._updateSkillPoints();
@@ -1449,6 +1452,7 @@ class UIManager {
                 { id: 'missions',     icon: '📋', label: 'Missões',    sub: 'Diárias e Semanais', theme: 'green'  },
                 { id: 'achievements', icon: '🏆', label: 'Conquistas', sub: 'Marcos do Jogo',     theme: 'gold'   },
                 { id: 'leaderboard',  icon: '🏅', label: 'Placar',     sub: 'Ranking Global',     theme: 'neural' },
+                { id: 'boss',         icon: '⚔️', label: 'Boss Battle', sub: 'Batalha Global',    theme: 'pink'   },
             ],
             conta: [
                 { id: 'profile',  icon: '👤', label: 'Perfil',          sub: 'Conta e Estatísticas', theme: 'neural' },
@@ -2189,6 +2193,176 @@ class UIManager {
                 this._lbRefreshTimer = null;
             }
         }, 30_000);
+    }
+
+    // ── Boss Battle ──────────────────────────────────────────────────────────
+
+    _renderBoss(container) {
+        const bm  = this._game.boss;
+        const acc = this._game.account;
+        container.innerHTML = '<div class="boss-panel" id="boss-panel"><div class="boss-loading">⚔️ Carregando batalha…</div></div>';
+        bm.startPolling(4000);
+
+        // Listen for hit events to animate the HP bar
+        const onHit = () => this._updateBossPanel();
+        this._game.events.on('bossHit', onHit);
+        this._game.events.on('bossStateUpdate', onHit);
+        this._bossHitHandler = onHit;
+
+        // Attack on click inside the boss icon area
+        const panel = container.querySelector('#boss-panel');
+        if (panel) {
+            panel.addEventListener('click', e => {
+                if (e.target.closest('.boss-icon-wrap')) {
+                    bm.attackClick();
+                    this._spawnHitParticle(e.target.closest('.boss-icon-wrap'));
+                }
+            });
+        }
+    }
+
+    _updateBossPanel() {
+        const bm  = this._game.boss;
+        const acc = this._game.account;
+        const wrap = document.getElementById('boss-panel');
+        if (!wrap) return;
+
+        if (!bm.boss) {
+            wrap.innerHTML = `
+                <div class="boss-no-boss">
+                    <div class="boss-no-boss-icon">🌐</div>
+                    <div class="boss-no-boss-title">Nenhum Boss Ativo</div>
+                    <div class="boss-no-boss-sub">Um novo boss aparecerá em breve…</div>
+                </div>`;
+            return;
+        }
+
+        const b    = bm.boss;
+        const def  = (typeof BOSS_TYPES !== 'undefined' && BOSS_TYPES[b.type]) || {};
+        const rc   = (typeof BOSS_RARITY_COLORS !== 'undefined' && BOSS_RARITY_COLORS[b.rarity]) || '#00f5ff';
+        const rl   = (typeof BOSS_RARITY_LABELS !== 'undefined' && BOSS_RARITY_LABELS[b.rarity]) || b.rarity;
+
+        const defeated = b.status === 'defeated' || b.status === 'expired';
+        const pct      = Math.max(0, Math.min(1, b.pct ?? (b.currentHp / b.maxHp)));
+        const hpPct    = (pct * 100).toFixed(2);
+
+        // HP bar color: green > yellow > red
+        const hpColor = pct > 0.5 ? '#00ff88' : pct > 0.25 ? '#ffd700' : '#ff4444';
+
+        // Timer
+        const rem      = b.remaining ?? 0;
+        const mins     = Math.floor(rem / 60);
+        const secs     = rem % 60;
+        const timerStr = defeated ? (b.status === 'defeated' ? '☠ Derrotado!' : '⌛ Expirado') : `⏱ ${mins}:${secs.toString().padStart(2,'0')}`;
+
+        // Top damage rows
+        const topHTML = bm.top.length === 0
+            ? '<div class="boss-top-empty">Nenhum dano registrado ainda.</div>'
+            : bm.top.map((p, i) => {
+                const medal  = i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : `#${i+1}`;
+                const isMe   = acc.isLoggedIn() && p.userId === acc.getAccount()?.id;
+                const dmgPct = b.maxHp > 0 ? Math.min(100, (p.damage / b.maxHp) * 100) : 0;
+                const avatar = p.foto ? `<img class="boss-top-avatar" src="foto/${p.foto}" alt="">` : `<img class="boss-top-avatar" src="foto/padrao.png" alt="">`;
+                return `
+                    <div class="boss-top-row${isMe ? ' boss-top-row--me' : ''}">
+                        <span class="boss-top-medal">${medal}</span>
+                        ${avatar}
+                        <span class="boss-top-name">${p.username}</span>
+                        <div class="boss-top-bar-wrap">
+                            <div class="boss-top-bar" style="width:${dmgPct.toFixed(1)}%;background:${rc}"></div>
+                        </div>
+                        <span class="boss-top-dmg">${formatNum(p.damage)}</span>
+                    </div>`;
+            }).join('');
+
+        const loginMsg = !acc.isLoggedIn()
+            ? `<div class="boss-login-msg">⚠ Faça login para atacar o boss e ganhar recompensas!</div>` : '';
+
+        const myDmgHTML = acc.isLoggedIn() && bm.myDamage > 0
+            ? `<div class="boss-my-dmg">Seu dano: <strong>${formatNum(bm.myDamage)}</strong>${bm.myRank ? ` &nbsp;·&nbsp; Rank <strong>#${bm.myRank}</strong>` : ''}</div>`
+            : '';
+
+        // Rewards hint
+        let rewardHTML = '';
+        if (b.rarity) {
+            const mult = b.rarity === 'legendary' ? 3 : b.rarity === 'epic' ? 2 : 1;
+            rewardHTML = `
+                <div class="boss-rewards-hint">
+                    <span>🥇 Top 1: ${30 * mult}💎</span>
+                    <span>🥈 Top 10: ${15 * mult}💎</span>
+                    <span>🥉 Top 100: ${5 * mult}💎</span>
+                </div>`;
+        }
+
+        const attackBtn = !defeated && acc.isLoggedIn()
+            ? `<button class="boss-attack-btn" onclick="window.game.boss.attackClick(); window.game.ui._spawnHitParticle(document.querySelector('.boss-icon-wrap'))">⚔ ATACAR</button>`
+            : '';
+
+        wrap.innerHTML = `
+            <div class="boss-header">
+                <div class="boss-title-row">
+                    <span class="boss-name" style="color:${rc}">${def.name || b.type}</span>
+                    <span class="boss-rarity-badge" style="--rc:${rc}">${rl}</span>
+                    <span class="boss-level-badge">Lv.${b.level}</span>
+                </div>
+                <div class="boss-desc">${def.desc || ''}</div>
+            </div>
+
+            <div class="boss-icon-wrap${defeated ? ' boss-icon-wrap--dead' : ''}" style="--glow:${def.glowColor || rc + '55'}">
+                <div class="boss-icon-glow" style="background:radial-gradient(ellipse,${def.glowColor || rc + '33'} 0%,transparent 70%)"></div>
+                <div class="boss-icon" id="boss-icon">${def.icon || '👾'}</div>
+                ${!defeated ? `<div class="boss-click-hint">clique para atacar</div>` : ''}
+            </div>
+
+            <div class="boss-hp-section">
+                <div class="boss-hp-label">
+                    <span>${defeated ? (b.status === 'defeated' ? '☠ Derrotado' : '⌛ Expirado') : 'HP'}</span>
+                    <span>${formatNum(Math.max(0, b.currentHp))} / ${formatNum(b.maxHp)}</span>
+                </div>
+                <div class="boss-hp-bar-track">
+                    <div class="boss-hp-bar-fill" id="boss-hp-fill" style="width:${hpPct}%;background:${hpColor};box-shadow:0 0 12px ${hpColor}88"></div>
+                </div>
+                <div class="boss-hp-pct">${hpPct}%</div>
+            </div>
+
+            <div class="boss-meta-row">
+                <span class="boss-timer${defeated ? ' boss-timer--dead' : ''}">${timerStr}</span>
+                ${myDmgHTML}
+            </div>
+
+            ${loginMsg}
+            ${attackBtn}
+            ${rewardHTML}
+
+            <div class="boss-top-section">
+                <div class="boss-top-title">⚔ Top Dano</div>
+                ${topHTML}
+            </div>`;
+
+        // Smooth HP bar transition on next frame
+        requestAnimationFrame(() => {
+            const fill = document.getElementById('boss-hp-fill');
+            if (fill) { fill.style.transition = 'width 0.6s ease, background 0.4s'; }
+        });
+    }
+
+    _spawnHitParticle(target) {
+        if (!target) return;
+        const el = document.createElement('div');
+        el.className = 'boss-hit-fx';
+        el.textContent = ['⚡','💥','🔥','⚔','✦'][Math.floor(Math.random() * 5)];
+        el.style.cssText = `left:${20 + Math.random() * 60}%;top:${10 + Math.random() * 40}%`;
+        target.appendChild(el);
+        setTimeout(() => el.remove(), 700);
+
+        // Shake the boss icon
+        const icon = document.getElementById('boss-icon');
+        if (icon) {
+            icon.classList.remove('boss-icon--hit');
+            void icon.offsetWidth;
+            icon.classList.add('boss-icon--hit');
+            setTimeout(() => icon.classList.remove('boss-icon--hit'), 300);
+        }
     }
 
     _renderRebirth(container) {
