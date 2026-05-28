@@ -636,7 +636,6 @@ class UIManager {
         this._updateComboDisplay();
         this._updatePrestigeBtn();
         this._updateBadges();
-        this._updatePrestigeCharacter();
 
         if (this._activePanel === 'generators') this._updateGenerators();
         if (this._activePanel === 'upgrades') this._updateUpgrades();
