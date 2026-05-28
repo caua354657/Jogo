@@ -59,6 +59,20 @@ if ($action === 'upload') {
         json_out(['ok' => false, 'msg' => 'Erro ao atualizar perfil.'], 500);
     }
 
+} elseif ($action === 'remove') {
+    try {
+        $stmt = db()->prepare('SELECT foto FROM usuarios WHERE id = ? LIMIT 1');
+        $stmt->execute([$_SESSION['uid']]);
+        $old = $stmt->fetch();
+        if ($old && $old['foto']) {
+            $path = __DIR__ . '/../foto/' . basename($old['foto']);
+            if (file_exists($path)) @unlink($path);
+        }
+        db()->prepare('UPDATE usuarios SET foto = NULL WHERE id = ?')->execute([$_SESSION['uid']]);
+        json_out(['ok' => true]);
+    } catch (PDOException $e) {
+        json_out(['ok' => false, 'msg' => 'Erro ao remover foto.'], 500);
+    }
 } else {
     json_out(['ok' => false, 'msg' => 'Ação desconhecida.'], 400);
 }

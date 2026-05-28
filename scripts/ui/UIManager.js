@@ -401,6 +401,7 @@ class UIManager {
             if (id === 'auth-login-btn') this._handleAuthLogin();
             if (id === 'auth-reg-btn')   this._handleAuthRegister();
             if (id === 'profile-photo-change') document.getElementById('profile-photo-input')?.click();
+            if (id === 'profile-photo-remove') this._handleRemovePhoto();
             if (id === 'delete-account-btn') this._showDeleteConfirm();
             if (id === 'da-cancel' || id === 'delete-account-overlay') this._hideDeleteConfirm();
             if (id === 'da-confirm') this._confirmDeleteAccount();
@@ -567,6 +568,18 @@ class UIManager {
             this._renderPanelContent('profile');
         } else {
             if (msg) { msg.textContent = result.msg; msg.classList.add('profile-auth-error'); }
+        }
+    }
+
+    async _handleRemovePhoto() {
+        const btn = document.getElementById('profile-photo-remove');
+        if (btn) { btn.disabled = true; btn.textContent = '⏳'; }
+        const result = await this._game.account.removePhoto();
+        if (result.ok) {
+            this._renderPanelContent('profile');
+        } else {
+            if (btn) { btn.disabled = false; btn.textContent = '🗑'; }
+            this._game.notify(result.msg || 'Erro ao remover foto.', 'error');
         }
     }
 
@@ -1245,11 +1258,8 @@ class UIManager {
             const a = acc.getAccount();
             const since = new Date(a.createdAt || Date.now()).toLocaleDateString('pt-BR');
             const vipBadge = acc.isVip() ? `<span class="vip-profile-badge">👑 VIP</span>` : '';
-            const photoUrl = acc.getPhotoUrl();
             const isLocalOnly = acc.isLocalOnly();
-            const avatarHTML = photoUrl
-                ? `<img class="profile-photo-img${acc.isVip() ? ' profile-avatar-vip' : ''}" src="${photoUrl}" alt="Foto" id="profile-photo-el">`
-                : `<div class="profile-avatar${acc.isVip() ? ' profile-avatar-vip' : ''}" id="profile-photo-el">${acc.getAvatarIcon()}</div>`;
+            const avatarHTML = `<img class="profile-photo-img${acc.isVip() ? ' profile-avatar-vip' : ''}" src="${acc.getPhotoUrl()}" alt="Foto" id="profile-photo-el">`;
 
             const localBanner = isLocalOnly ? `
                 <div class="profile-local-banner">
@@ -1262,7 +1272,8 @@ class UIManager {
                     <div class="profile-avatar-wrap">
                         ${avatarHTML}
                         ${!isLocalOnly ? `<button class="profile-photo-change-btn" id="profile-photo-change" title="Alterar foto">📷</button>
-                        <input type="file" id="profile-photo-input" accept="image/jpeg,image/png,image/gif,image/webp" style="display:none">` : ''}
+                        <input type="file" id="profile-photo-input" accept="image/jpeg,image/png,image/gif,image/webp" style="display:none">
+                        ${acc.hasCustomPhoto() ? `<button class="profile-photo-remove-btn" id="profile-photo-remove" title="Remover foto">🗑</button>` : ''}` : ''}
                     </div>
                     <div class="profile-card-info">
                         <div class="profile-username${acc.isVip() ? ' profile-username-vip' : ''}">${a.username}${vipBadge}</div>
@@ -2090,11 +2101,10 @@ class UIManager {
         const podiumMedals  = ['🥇','🥈','🥉'];
 
         const avatarEl = (entry) => {
-            if (entry.isPlayer && acc.getPhotoUrl())
+            if (entry.isPlayer)
                 return `<img class="lb-avatar-img" src="${acc.getPhotoUrl()}" alt="">`;
-            if (entry.foto)
-                return `<img class="lb-avatar-img" src="foto/${entry.foto}" alt="">`;
-            return `<div class="lb-avatar-icon">${defaultAvatar(entry.username)}</div>`;
+            const src = entry.foto ? `foto/${entry.foto}` : 'foto/padrao.png';
+            return `<img class="lb-avatar-img" src="${src}" alt="">`;
         };
 
         const buildPodiumSlot = (entry, rank) => {

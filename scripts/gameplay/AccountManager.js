@@ -112,8 +112,25 @@ class AccountManager {
     }
 
     getPhotoUrl() {
-        if (!this._user?.foto) return null;
-        return 'foto/' + this._user.foto;
+        if (this._user?.foto) return 'foto/' + this._user.foto;
+        return 'foto/padrao.png';
+    }
+
+    hasCustomPhoto() {
+        return !!this._user?.foto;
+    }
+
+    async removePhoto() {
+        try {
+            const fd = new FormData();
+            fd.append('action', 'remove');
+            const res  = await fetch('api/profile.php', { method: 'POST', body: fd });
+            const data = await res.json();
+            if (data.ok && this._user) { this._user.foto = null; this._persist(); }
+            return data;
+        } catch (e) {
+            return { ok: false, msg: 'Erro de conexão.' };
+        }
     }
 
     getAvatarIcon() {

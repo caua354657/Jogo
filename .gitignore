@@ -17,9 +17,10 @@ desktop.ini
 # Node (just in case)
 node_modules/
 
-# User-uploaded photos (keep foto/.htaccess)
+# User-uploaded photos (keep .htaccess and padrao.png)
 foto/*.jpg
 foto/*.jpeg
-foto/*.png
 foto/*.gif
 foto/*.webp
+foto/*.png
+!foto/padrao.png
