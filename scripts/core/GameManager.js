@@ -276,7 +276,7 @@ class GameManager {
         }
 
         const orb = document.querySelector('.orb-core');
-        if (orb) orb.textContent = skin.orbIcon;
+        if (orb) orb.textContent = skin.icon;
         document.body.setAttribute('data-skin', skin.theme);
 
         // Reinitialise background neural network with new skin palette
