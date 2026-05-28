@@ -107,5 +107,16 @@ case 'rank': {
     break;
 }
 
+case 'delete': {
+    if (empty($_SESSION['uid'])) out(['ok' => false, 'msg' => 'Não autenticado.'], 401);
+    try {
+        db()->prepare("DELETE FROM leaderboard WHERE user_id = ?")->execute([$_SESSION['uid']]);
+        out(['ok' => true]);
+    } catch (PDOException $ex) {
+        out(['ok' => false, 'msg' => 'Erro ao remover do placar.'], 500);
+    }
+    break;
+}
+
 default: out(['ok' => false, 'msg' => 'Ação inválida.'], 400);
 }

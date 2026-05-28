@@ -431,7 +431,14 @@ class GameManager {
 
     wipeSave() {
         this._running = false;
-        this._noSave  = true; // prevent beforeunload from re-saving wiped state
+        this._noSave  = true;
+        if (this.account.isLoggedIn()) {
+            fetch('api/leaderboard.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ action: 'delete' }),
+            }).catch(() => {});
+        }
         this.saveManager.wipe();
         location.reload();
     }
