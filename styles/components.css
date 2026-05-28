@@ -936,7 +936,7 @@ input[type=range]::-webkit-slider-thumb {
 
 .lb-rank {
     font-family: 'Orbitron', monospace;
-    font-size: 11px; font-weight: 700;
+    font-size: 13px; font-weight: 700;
     min-width: 30px; text-align: center;
     color: var(--text-dim); flex-shrink: 0;
 }
@@ -946,7 +946,7 @@ input[type=range]::-webkit-slider-thumb {
 
 .lb-info { flex: 1; min-width: 0; }
 .lb-name {
-    font-size: 14px; font-weight: 700; color: var(--text);
+    font-size: 16px; font-weight: 700; color: var(--text);
     white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
     display: flex; align-items: center; gap: 5px;
 }
@@ -973,15 +973,15 @@ input[type=range]::-webkit-slider-thumb {
     letter-spacing: 0.8px;
     flex-shrink: 0;
 }
-.lb-sub { font-size: 12px; color: var(--text-dim); margin-top: 2px; }
+.lb-sub { font-size: 13px; color: var(--text-dim); margin-top: 2px; }
 
 .lb-score {
     font-family: 'Orbitron', monospace;
-    font-size: 11px; font-weight: 700;
+    font-size: 13px; font-weight: 700;
     color: var(--cyan); text-align: right;
     white-space: nowrap; flex-shrink: 0;
 }
-.lb-unit { font-size: 9px; color: var(--text-dim); }
+.lb-unit { font-size: 11px; color: var(--text-dim); }
 
 .lb-separator {
     text-align: center; color: var(--text-dim);
