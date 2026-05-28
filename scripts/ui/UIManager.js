@@ -667,17 +667,26 @@ class UIManager {
         const prestTokens = g.economy.calcPrestigeTokens();
         if (prestTokens > 0) badges.rebirth = prestTokens;
 
-        const claimable = [...g.missions.completed].filter(id => !g.missions.claims.has(id)).length;
-        if (claimable > 0) badges.missions = claimable;
+        // Active (non-daily/non-weekly) claimable — what the Ativas tab shows
+        const claimableActive = (typeof MISSIONS !== 'undefined' ? MISSIONS : []).filter(m =>
+            m.cooldown !== 'daily' && m.cooldown !== 'weekly' &&
+            g.missions.completed.has(m.id) && !g.missions.claims.has(m.id)
+        ).length;
+        // Daily/weekly claimable — what the Agenda tab shows
+        const claimableDaily = (typeof MISSIONS !== 'undefined' ? MISSIONS : []).filter(m =>
+            (m.cooldown === 'daily' || m.cooldown === 'weekly') &&
+            g.missions.completed.has(m.id) && !g.missions.claims.has(m.id)
+        ).length;
+        const claimableTotal = claimableActive + claimableDaily;
+        if (claimableActive > 0) badges.missions = claimableActive;  // matches Ativas tab count
 
         const moreTotal = (badges.missions || 0) + (badges.rebirth ? 1 : 0) + (badges.upgrades || 0);
         if (moreTotal > 0) badges.more = moreTotal;
 
-        // Group badge aggregates for the new nav categories
+        // Group badge aggregates
         const neuralTotal = (badges.generators || 0) + (badges.upgrades || 0) + (badges.rebirth ? 1 : 0);
         if (neuralTotal > 0) badges.neural = neuralTotal;
-        const agendaTotal = badges.missions || 0;
-        if (agendaTotal > 0) badges.agenda = agendaTotal;
+        if (claimableTotal > 0) badges.agenda = claimableTotal;  // agenda shows full total
 
         return badges;
     }
